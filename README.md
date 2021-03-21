@@ -50,7 +50,7 @@ In this section you can find all the steps required to install and run this soft
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* Python (version 3.x) [https://www.python.org/downloads/](https://www.python.org/downloads/).
+* Python version 3.x (https://www.python.org/downloads/).
 * A virtual audio device, personally, I recommend Virtual Audio Cable (VAC) from VB-Audio Software (https://vb-audio.com/Cable/), there is a free version available which is more than enough to make use of this project.
 
 ### Installation
