@@ -36,9 +36,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project started from the idea of developing a dynamic compressor that reduces abrupt acoustic differences in the amplitude of an audio signal in real time, a tool especially helpful for people that suffer some hearing disability, such as hyperacuse, phonophobia or even misophonia.
+This project started from the idea of developing a dynamic compressor that reduces abrupt acoustic differences in the amplitude of an audio signal in real time alongside a limiter that tottaly prevents loud noises which can lead to soft or hard clipping situations that may damage your hearing or your audio output device
 
-By reducing the exposure to harmful noise, people affected by such condititons may feel more safe and calm while using their computer, greatly reducing the anxiety that these situations can generate.
+The combination of this two features may result especially helpful for people that suffer some hearing disability, such as hyperacuse, phonophobia or even misophonia. By reducing the exposure to harmful noise, people affected by such condititons may feel more safe and calm while using their computer, greatly reducing the anxiety that these situations can generate.
 
 I built this project for my personal use, however, I thought I could share it publicly so, hopefully, more people can benefit from this.
 
