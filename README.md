@@ -38,7 +38,7 @@
 
 This project started from the idea of developing a dynamic compressor that reduces abrupt acoustic differences in the amplitude of an audio signal in real time alongside a limiter that tottaly prevents loud noises which can lead to soft or hard clipping situations that may damage your hearing or your audio output device
 
-The combination of these two features can be especially useful for those people with hearing impairments, such as hyperacuse, phonophobia or even misophonia. By reducing the exposure to harmful noise, people affected by such condititons may feel more safe and calm while using their computer, greatly reducing the anxiety that these situations can generate.
+The combination of these two features can be especially useful for those people that suffer of some mental or hearind disorder, such as hyperacusis, phonophobia or misophonia. By reducing the exposure to harmful noise, people affected by such condititons may feel more safe and calm while using their computer, greatly reducing the anxiety and anguish that these situations can generate.
 
 I built this project for my personal use, however, I thought I could share it publicly so, hopefully, more people can benefit from this.
 
@@ -64,15 +64,16 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    pip3 install -r requirements.txt
    ```
-   
-3. Check your input and output device IDs:
+3. Select the virtual audio device you installed earlier as the default output device.
+  
+4. Check your input and output device IDs:
    ```sh
    python main.py -l
    ```
    Write down the numbers that appear at the left of your desired input and output devices names.
    
-4. Open start.bat, if you are on Windows, or start.sh, if you are on Linux or MacOS, with a text editor and replace the IDs you wrote down in the last step for the ones present in the file, especifically replace the number after "-i" for the ID of your input device and the number after "-o" with your output device ID.
-As you may notice there are more parameters you can set, I dont recommend you to do so if you are not a experienced user in audio processing, in any case, be sure to check what they do in the help message:
+5. Open start.bat, if you are on Windows, or start.sh, if you are on Linux or MacOS, with a text editor and replace the IDs you wrote down in the last step for the ones present in the file, especifically replace the number after "-i" for the ID of your input device and the number after "-o" with your output device ID.
+As you may notice there are more parameters you can set, you can check what they do in the help message:
    ```sh
    python main.py -h
    ```
