@@ -21,17 +21,17 @@ class AudioStreamNormalization:
 
         if (audio_segment.dBFS >= self.args.normalization_threshold):
             change_in_dBFS = ((1 / (1 + np.exp(-target_dBFS + audio_segment.dBFS))) - 0.5) / (profiles[self.args.normalization_profile] * np.log(abs(audio_segment.dBFS)))
-            #audio_segment = audio_segment.apply_gain(change_in_dBFS)
+            audio_segment = audio_segment.apply_gain(change_in_dBFS)
 
             if (self.args.debug == True):
-                print(f"Normalization threshold exceeded:\nAudio segment (dbFS): {audio_segment.dBFS} # Applied Gain (dBFS): {change_in_dBFS}\n")
+                print(f"\nNormalization threshold exceeded:\nAudio segment (dbFS): {audio_segment.dBFS} # Applied Gain (dBFS): {change_in_dBFS}")
 
         if (audio_segment.dBFS > self.args.limiter_threshold):
             change_in_dBFS = (target_dBFS - audio_segment.dBFS)
-            #audio_segment = audio_segment.apply_gain(change_in_dBFS)
+            audio_segment = audio_segment.apply_gain(change_in_dBFS)
 
             if (self.args.debug == True):
-                print(f"Limiter threshold exceeded:\nAudio segment (dbFS): {audio_segment.dBFS} # Applied Gain (dBFS): {change_in_dBFS}\n")
+                print(f"\nLimiter threshold exceeded:\nAudio segment (dbFS): {audio_segment.dBFS} # Applied Gain (dBFS): {change_in_dBFS}")
 
         return audio_segment
 
@@ -64,9 +64,9 @@ class AudioStreamNormalization:
 
     def start(self):
         if (platform != "Darwin"):
-            print("Press Ctrl-C to stop.\n")
+            print("\nPress Ctrl-C to stop.")
         else:
-            print("Press Command-C to stop.\n")
+            print("\nPress Command-C to stop.")
           
         try:
             with sd.Stream(device=(self.args.input_device, self.args.output_device),
@@ -75,6 +75,6 @@ class AudioStreamNormalization:
                            channels=self.args.channels, callback=self.stream_callback):
                 input()
         except KeyboardInterrupt:
-            self.parser.exit('')
+            self.parser.exit()
         except Exception as e:
             self.parser.exit(type(e).__name__ + ': ' + str(e))
