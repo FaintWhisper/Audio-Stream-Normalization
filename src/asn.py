@@ -14,20 +14,20 @@ class AudioStreamNormalization:
 
     def normalize(self, audio_segment, target_dBFS):
         profiles = {
-            "soft": 0.08,
-            "medium": 0.06,
-            "hard": 0.04
+            "soft": 0.1,
+            "medium": 0.09,
+            "hard": 0.07
         }
 
         if (audio_segment.dBFS >= self.args.normalization_threshold):
-            change_in_dBFS = ((1 / (1 + np.exp(-target_dBFS + audio_segment.dBFS))) - 0.5) / (profiles[self.args.normalization_profile] * np.log(abs(audio_segment.dBFS)))
+            change_in_dBFS = -(1 / (1 + np.exp(target_dBFS - audio_segment.dBFS))) / (profiles[self.args.normalization_profile] * np.log(abs(audio_segment.dBFS)))
             audio_segment = audio_segment.apply_gain(change_in_dBFS)
 
             if (self.args.debug == True):
                 print(f"\nNormalization threshold exceeded:\nAudio segment (dbFS): {audio_segment.dBFS} # Applied Gain (dBFS): {change_in_dBFS}")
 
         if (audio_segment.dBFS > self.args.limiter_threshold):
-            change_in_dBFS = (target_dBFS - audio_segment.dBFS)
+            change_in_dBFS = -(target_dBFS - audio_segment.dBFS)
             audio_segment = audio_segment.apply_gain(change_in_dBFS)
 
             if (self.args.debug == True):
