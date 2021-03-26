@@ -38,7 +38,7 @@
 
 This project started from the idea of developing a dynamic compressor that reduces abrupt acoustic differences in the amplitude of an audio signal in real time alongside a limiter that tottaly prevents loud noises which can lead to soft or hard clipping situations that may damage your hearing or your audio output device
 
-The combination of these two features can be especially useful for those people that suffer of some mental or hearind disorder, such as hyperacusis, phonophobia or misophonia. By reducing the exposure to harmful noise, people affected by such condititons may feel more safe and calm while using their computer, greatly reducing the anxiety and anguish that these situations can generate.
+The combination of these two features can be especially useful for those people that suffer of some mental or hearind disorder, such as hyperacusis or phonophobia. By reducing the exposure to harmful noise, people affected by such condititons may feel more safe and calm while using their computer, greatly reducing the anxiety and anguish that these situations can generate.
 
 I built this project for my personal use, however, I thought I could share it publicly so, hopefully, more people can benefit from this.
 
@@ -51,7 +51,7 @@ In this section you can find all the steps required to install and run this soft
 
 This is an example of how to list things you need to use the software and how to install them.
 * Python version 3.x (https://www.python.org/downloads/).
-* A virtual audio device, personally, I recommend Virtual Audio Cable (VAC) from VB-Audio Software (https://vb-audio.com/Cable/), there is a free version available which is more than enough to make use of this project.
+* A virtual audio device, personally, I recommend Virtual Audio Cable (VAC) from VB-Audio Software (https://vb-audio.com/Cable/), there is a free version available which is more than enough to make use of this project. As a side note, if you choosed to install VAC, I suggest you to open VAC Control Panel and check the "Volume Control" box that appears at the upper right section, this will allow you to manually control the volume of the audio that goes through the virtual device whenever you require.
 
 ### Installation
 
