@@ -14,13 +14,15 @@ class AudioStreamNormalization:
 
     def normalize(self, audio_segment, target_dBFS):
         profiles = {
-            "soft": 0.1,
-            "medium": 0.09,
-            "hard": 0.07
+            "soft": 0.004,
+            "medium": 0.0008,
+            "hard": 0.0004
         }
 
         if (audio_segment.dBFS >= self.args.normalization_threshold):
-            change_in_dBFS = -(1 / (1 + np.exp(target_dBFS - audio_segment.dBFS))) / (profiles[self.args.normalization_profile] * np.log(abs(audio_segment.dBFS)))
+            print(audio_segment.dBFS)
+            change_in_dBFS = ((1 / (1 + 1.4**(abs(audio_segment.dBFS) + target_dBFS))) - 0.5) * \
+                np.log(profiles[self.args.normalization_profile] * abs(audio_segment.dBFS)) * 2
             audio_segment = audio_segment.apply_gain(change_in_dBFS)
 
             if (self.args.debug == True):
@@ -38,12 +40,12 @@ class AudioStreamNormalization:
     def stream_callback(self, indata, outdata, frames, time, status):
         if (status):
             print(status)
-        
+
         self.data = np.vstack((self.data, indata))
 
         if ((self.data.shape[0] > 0) and (self.data.shape[0] % self.buffer_max_samples == 0)):
             stacked_channels_data = np.vstack([np.array(channel_data, dtype=self.args.audio_data_type)
-                                              for channel_data in np.hsplit(self.data, self.args.channels)]).flatten()
+                                               for channel_data in np.hsplit(self.data, self.args.channels)]).flatten()
             audio_segment = AudioSegment(
                 stacked_channels_data.tobytes(),
                 frame_rate=self.args.sample_rate,
@@ -53,7 +55,7 @@ class AudioStreamNormalization:
             normalized_audio_segment = self.normalize(audio_segment, self.args.normalization_target)
             normalized_audio_data = np.array(normalized_audio_segment.get_array_of_samples())
             self.data = np.column_stack([np.array(normalized_audio_channel_data, dtype=self.args.audio_data_type)
-                                        for normalized_audio_channel_data in np.array_split(normalized_audio_data, self.args.channels)])
+                                         for normalized_audio_channel_data in np.array_split(normalized_audio_data, self.args.channels)])
 
             self.buffer_num_samples = self.buffer_max_samples
 
@@ -67,7 +69,7 @@ class AudioStreamNormalization:
             print("\nPress Ctrl-C to stop.")
         else:
             print("\nPress Command-C to stop.")
-          
+
         try:
             with sd.Stream(device=(self.args.input_device, self.args.output_device),
                            samplerate=self.args.sample_rate, blocksize=self.args.block_size,
