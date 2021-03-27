@@ -20,7 +20,6 @@ class AudioStreamNormalization:
         }
 
         if (audio_segment.dBFS >= self.args.normalization_threshold):
-            print(audio_segment.dBFS)
             change_in_dBFS = ((1 / (1 + 1.4**(abs(audio_segment.dBFS) + target_dBFS))) - 0.5) * \
                 np.log(profiles[self.args.normalization_profile] * abs(audio_segment.dBFS)) * 2
             audio_segment = audio_segment.apply_gain(change_in_dBFS)
