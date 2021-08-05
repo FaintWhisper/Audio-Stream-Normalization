@@ -1,8 +1,8 @@
 <p align="center">
-  <h3 align="center">Audio Stream Normalization</h3>
+  <h3 align="center">Audio Stream Normalization (ASN)</h3>
 
   <p align="center">
-    Real-time audio output normalization for Windows, MacOS and Linux.
+    Real-time audio output normalization for Windows, macOS and Linux.
     <br/>
     <a href="https://github.com/RYSKZ/Audio-Stream-Normalization/issues">Report a Bug</a>
     ·
